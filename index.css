@@ -1,11 +1,15 @@
 :root {
-    --parchment-bg: #f4ebd0;
-    --parchment-card: #eadeb8;
-    --parchment-card-hover: #e2d19f;
-    --border-color: #8c6d46;
-    --text-main: #3a2e2b;
-    --text-muted: #5c4a45;
-    --root-color: #6b4423;
+    --bg-color: #f4ebd0;
+    --sidebar-bg: #eadeb8;
+    --sidebar-border: #d4c39c;
+    --text-color: #3a2e2b;
+    --text-muted: #6b5b53;
+    --primary-color: #78350f;
+    --card-bg: #fffbf0;
+    --card-border: #c8b183;
+    --card-hover: #faedcd;
+    --root-card-bg: #78350f;
+    --root-card-text: #fffbf0;
 }
 
 * {
@@ -15,45 +19,147 @@
 }
 
 body {
-    background-color: var(--parchment-bg);
-    color: var(--text-main);
     font-family: 'Georgia', serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     line-height: 1.6;
-    padding: 20px;
-    background-image: radial-gradient(circle, rgba(244,235,208,0.8) 0%, rgba(218,202,162,0.6) 100%);
 }
 
-header {
+/* Главни распоред ( Sidebar + Main ) */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Бочни мени */
+.sidebar {
+    width: 300px;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--sidebar-border);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.sidebar-header h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Мобилни прекидач (скривен на десктопу) */
+.menu-toggle {
+    display: none;
+}
+
+.menu-btn {
+    display: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    background: var(--card-bg);
+}
+
+.sidebar-collapsible {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.nav-menu a:hover {
+    background-color: var(--card-hover);
+    color: var(--primary-color);
+}
+
+.sidebar-info h3 {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.sidebar-info p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Главни садржај */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    overflow-x: auto;
+}
+
+/* Насловна секција (Hero) */
+.hero {
     text-align: center;
     margin-bottom: 40px;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 20px;
+    padding: 30px;
+    background-color: var(--sidebar-bg);
+    border-radius: 10px;
+    border: 1px solid var(--sidebar-border);
 }
 
-header h1 {
-    font-size: 2.5rem;
-    color: var(--root-color);
-    margin-bottom: 10px;
+.hero-location {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
     letter-spacing: 1px;
+    margin-bottom: 8px;
 }
 
-header p {
+.hero h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.hero p {
     font-size: 1.1rem;
     color: var(--text-muted);
-    font-style: italic;
 }
 
+/* Секције */
 .section {
-    max-width: 100%;
-    overflow-x: auto;
-    padding: 20px 0;
+    margin-bottom: 50px;
 }
 
 .section h2 {
-    text-align: center;
-    color: var(--root-color);
-    margin-bottom: 10px;
     font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    text-align: center;
 }
 
 .section-desc {
@@ -67,7 +173,8 @@ header p {
 .tree-container {
     display: flex;
     justify-content: center;
-    padding: 20px;
+    padding: 20px 0;
+    overflow-x: auto;
 }
 
 .tree ul {
@@ -86,13 +193,13 @@ header p {
     transition: all 0.5s;
 }
 
-/* Спољашње линије повезивања */
+/* Линије које повезују чворове */
 .tree li::before, .tree li::after {
     content: '';
     position: absolute; 
     top: 0; 
     right: 50%;
-    border-top: 2px solid var(--border-color);
+    border-top: 2px solid var(--card-border);
     width: 50%; 
     height: 20px;
 }
@@ -100,7 +207,7 @@ header p {
 .tree li::after {
     right: auto; 
     left: 50%;
-    border-left: 2px solid var(--border-color);
+    border-left: 2px solid var(--card-border);
 }
 
 .tree li:only-child::after, .tree li:only-child::before {
@@ -116,12 +223,12 @@ header p {
 }
 
 .tree li:last-child::before {
-    border-right: 2px solid var(--border-color);
-    border-radius: 0 5px 0 0;
+    border-right: 2px solid var(--card-border);
+    border-radius: 0 6px 0 0;
 }
 
 .tree li:first-child::after {
-    border-radius: 5px 0 0 0;
+    border-radius: 6px 0 0 0;
 }
 
 .tree ul ul::before {
@@ -129,7 +236,7 @@ header p {
     position: absolute; 
     top: 0; 
     left: 50%;
-    border-left: 2px solid var(--border-color);
+    border-left: 2px solid var(--card-border);
     width: 0; 
     height: 20px;
 }
@@ -137,49 +244,112 @@ header p {
 /* Картице чланова породице */
 .member-card {
     display: inline-block;
-    background-color: var(--parchment-card);
-    border: 2px solid var(--border-color);
+    background-color: var(--card-bg);
+    border: 2px solid var(--card-border);
     padding: 10px 15px;
     text-decoration: none;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.04);
     transition: all 0.3s ease;
-    min-width: 120px;
+    min-width: 130px;
 }
 
 .member-card:hover {
-    background-color: var(--parchment-card-hover);
+    background-color: var(--card-hover);
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
 }
 
 .member-card.root {
-    background-color: var(--root-color);
-    color: #fff;
-    border-color: #4a2e15;
+    background-color: var(--root-card-bg);
+    color: var(--root-card-text);
+    border-color: #552509;
 }
 
 .member-card.root span {
-    color: #f4ebd0;
+    color: #fde68a;
 }
 
 .member-card strong {
     display: block;
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin-bottom: 2px;
 }
 
 .member-card span {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
     display: block;
 }
 
-footer {
-    text-align: center;
-    margin-top: 50px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
+/* Галерија слика */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item figcaption {
+    padding: 12px;
     font-size: 0.9rem;
+    text-align: center;
     color: var(--text-muted);
+}
+
+/* Футер */
+.footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--sidebar-border);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Респонзивност за мобилне уређаје */
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 15px 20px;
+    }
+
+    .menu-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .sidebar-collapsible {
+        display: none;
+        margin-top: 15px;
+    }
+
+    .menu-toggle:checked ~ .sidebar-collapsible {
+        display: flex;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
 }
