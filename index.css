@@ -1,0 +1,36 @@
+.family-tree ul {
+    list-style: none;
+    padding-left: 20px;
+    position: relative;
+}
+
+.family-tree li {
+    position: relative;
+    padding: 5px 0 5px 25px;
+}
+
+/* Vertikalna linija */
+.family-tree li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-left: 2px solid #555;
+}
+
+/* Horizontalna linija do svakog člana */
+.family-tree li::after {
+    content: '';
+    position: absolute;
+    top: 20px; /* Prilagodite visinu */
+    left: 0;
+    width: 20px;
+    border-top: 2px solid #555;
+}
+
+/* Uklanjanje linija za poslednje dete */
+.family-tree li:last-child::before {
+    bottom: auto;
+    height: 20px; /* Ista visina kao top u ::after */
+}
