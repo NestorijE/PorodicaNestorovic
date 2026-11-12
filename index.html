@@ -1,721 +1,164 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Породица Несторовић - Придворица, Лепосавић</title>
-    <link rel="stylesheet" href="index.css">
+<meta charset="UTF-8">
+<meta name="theme-color" content="#b5582b">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Породица Несторовић - Придворица, Лепосавић</title>
+<style>
+:root{--g:#b5582b;--g2:#ffe9c7;--line:#e0a860;--bg:#fff8ec;--tx:#4a3426}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:56px}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;-webkit-text-size-adjust:100%}
+nav{position:sticky;top:0;z-index:20;background:var(--g);display:flex;justify-content:space-around;padding-top:env(safe-area-inset-top)}
+nav a{color:#fff;text-decoration:none;padding:14px 8px;font-size:15px;flex:1;text-align:center}
+nav a:active{background:#954421}
+header{background:linear-gradient(160deg,#c8622c,#f0a93a);color:#fff;text-align:center;padding:48px 20px}
+header h1{margin:0 0 6px;font-size:clamp(26px,8vw,42px)}
+header p{margin:0;opacity:.9}
+header .top{font-size:14px;letter-spacing:.04em;margin-bottom:10px;opacity:.95}
+section{padding:28px 16px;max-width:900px;margin:auto}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif}
+h2{color:var(--g);margin:0 0 10px;font-size:clamp(22px,6vw,30px)}
+h3{color:var(--g);margin:18px 0 6px}
+.card{background:#fffdf6;border:1px solid #f3dcb0;border-radius:14px;padding:16px;box-shadow:0 1px 6px #0001}
+.card a{color:var(--g);font-weight:600;word-break:break-all}
+.hint{font-size:14px;color:#6b7280;margin:0 0 10px}
+
+/* Stablo */
+#stablo{max-width:none;padding:28px 0}
+#stablo h2,#stablo .hint{padding:0 16px;max-width:900px;margin-left:auto;margin-right:auto}
+#wrap{position:relative;background:#fff;border-top:1px solid #d1d5db;border-bottom:1px solid #d1d5db}
+#vp{height:72vh;overflow:hidden;touch-action:none;cursor:grab;position:relative}
+#vp.drag{cursor:grabbing}
+#wrap.full{position:fixed;inset:0;z-index:50;border:0}
+#wrap.full #vp{height:100%}
+#cv{transform-origin:0 0;position:absolute;left:0;top:0;padding:20px;will-change:transform}
+.ctl{position:absolute;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px;z-index:5}
+.ctl button{width:46px;height:46px;border:0;border-radius:50%;background:var(--g);color:#fff;font-size:22px;box-shadow:0 2px 8px #0004;cursor:pointer}
+.ctl button:active{background:#954421}
+#cv ul{list-style:none;margin:0 0 0 20px;padding:0;position:relative}
+#cv ul::before{content:"";position:absolute;left:-20px;top:50%;width:20px;border-top:2px solid var(--line)}
+#cv>ul{margin:0}#cv>ul::before{display:none}
+#cv li{position:relative;display:flex;align-items:center;padding:4px 0}
+#cv ul ul>li,#cv li li{padding-left:0}
+#cv ul li::before{content:"";position:absolute;left:0;top:50%;width:0;border-top:2px solid var(--line)}
+#cv ul li::after{content:"";position:absolute;left:-0px;top:0;bottom:0;border-left:2px solid var(--line);display:none}
+#cv ul ul li::after{display:block;left:-0px}
+#cv ul ul li:first-child::after{top:50%}
+#cv ul ul li:last-child::after{bottom:50%}
+#cv ul ul li:only-child::after{display:none}
+#cv ul ul li{margin-left:0}
+.n{white-space:nowrap;background:var(--g2);color:#5a2d12;border:2px solid var(--g);border-radius:10px;padding:6px 12px;font-size:15px;font-weight:600;margin-right:0}
+.n.root{background:var(--g);color:#fff;font-size:17px}
+.n.unk{opacity:.6;font-style:italic;border-style:dashed}
+#cv ul ul>li>.n{margin-left:20px}
+#cv ul ul>li>.n::before{content:none}
+#cv ul ul>li::before{width:20px}
+
+/* Галерија */
+.gal{display:grid;grid-template-columns:1fr;gap:16px}
+.gal figure{margin:0;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 6px #0001}
+.gal img{width:100%;height:auto;display:block}
+.gal figcaption{padding:10px 14px;font-size:14px;color:#4b5563}
+@media(min-width:600px){.gal{grid-template-columns:1fr 1fr}}
+footer{text-align:center;padding:24px 16px calc(24px + env(safe-area-inset-bottom));background:var(--g);color:#ffe9c7;font-size:14px}
+</style>
 </head>
 <body>
+<nav><a href="#pocetna">Почетна</a><a href="#stablo">Породично стабло</a><a href="#galerija">Галерија</a></nav>
 
-    <div class="layout">
-        <!-- БОЧНИ МЕНИ (SIDEBAR) -->
-        <aside class="sidebar">
-            <div class="sidebar-top">
-                <div class="sidebar-header">
-                    <h2>Несторовићи</h2>
-                    <p class="subtitle">Придворица • Лепосавић</p>
-                </div>
+<header id="pocetna">
+  <p class="top">Република Србија • Аутономна Покрајина Косово и Метохија</p>
+  <h1>Породица Несторовић</h1>
+  <p>Село Придворица, Општина Лепосавић</p>
+</header>
 
-                <!-- Чист CSS прекидач за мобилни мени (без JavaScript-а) -->
-                <input type="checkbox" id="menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-btn" aria-label="Отвори или затвори мени">
-                    <span class="hamburger-icon"></span>
-                    <span class="menu-btn-text">Мени</span>
-                </label>
-            </div>
+<section>
+  <div class="card">
+    <h3 style="margin-top:0">О породици</h3>
+    <p>Породица Несторовић населила је крајем 19. века село Придворица у општини Лепосавић, на северу Косова и Метохије. Кроз генерације смо чували традицију, крсну славу и породичне вредности наших предака.</p>
+    <h3>Сврха сајта</h3>
+    <p>Овај сајт је направљен као дигитални архив са циљем да сачува успомене, повеже све чланове наше породице и млађим генерацијама остави јасан траг о коренима и пореклу.</p>
+    <p>Отворени смо за сва питања и сугестије, пишите нам на имејл адресу <a href="mailto:nikolanestorovic@hotmail.com">nikolanestorovic@hotmail.com</a></p>
+  </div>
+</section>
 
-            <div class="sidebar-collapsible">
-                <nav class="nav-menu">
-                    <a href="#pocetna">Почетна</a>
-                    <a href="#stablo">Породично стабло</a>
-                    <a href="#galerija">Галерија слика</a>
-                </nav>
-
-                <div class="sidebar-info">
-                    <h3>О породици</h3>
-                    <p>
-                        Породица Несторовић населила је крајем 18. века село Придворица у општини Лепосавић, на северу Косова и Метохије. Кроз генерације смо чували традицију, крсну славу и породичне вредности наших предака.
-                    </p>
-
-                    <h3>Сврха сајта</h3>
-                    <p>
-                        Овај сајт је направљен као дигитални архив са циљем да сачува 
-                        успомене, повеже све огранке наше породице и млађим генерацијама 
-                        остави јасан траг о коренима и пореклу.
-                    </p>
-                </div>
-            </div>
-        </aside>
-
-        <!-- ГЛАВНИ САДРЖАЈ -->
-        <main class="main-content">
-            
-            <!-- НАСЛОВНА СЕКЦИЈА -->
-            <header id="pocetna" class="hero">
-                <p style="font-size: 0.95rem; color: #fde047; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; font-weight: 600;">Република Србија • Аутономна Покрајина Косово и Метохија</p>
-                <h1>Породица Несторовић</h1>
-                <p>Село Придворица, Општина Лепосавић</p>
-            </header>
-
-            <!-- ПОРОДИЧНО СТАБЛО -->
-            <section id="stablo" class="section">
-                <h2>Породично стабло</h2>
-                <p class="section-desc">Преглед генерација и потомака породице Несторовић.</p>
-                
-                <div class="tree-container">
-                    <div class="tree">
-                        <ul>
-                            <li>
-                                <!-- КОРЕН СТАБЛА -->
-                                <div class="member-card root">
-                                    <strong>Нестор Шиљић</strong>
-                                    <span>Прародитељ (Придворица)</span>
-                                </div>
-                                <ul>
-                                    <!-- САВАТИЈЕ -->
-                                    <li>
-                                        <div class="member-card">
-                                            <strong>Саватије</strong>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Гвозден</strong>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Илија</strong>
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Миладин</strong>
-                                                        </div>
-                                                        <ul>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Светомир</strong>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Живан</strong>
-                                                                </div>
-                                                                <ul>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Јелена</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Стефан</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Радојка</strong>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Иванка</strong>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Милоје</strong>
-                                                        </div>
-                                                        <ul>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Пуниша</strong>
-                                                                </div>
-                                                                <ul>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Ђорђе</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Милоје</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Урош</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Тајна</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Саветка</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Радосав</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Танкосава</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Лепосава</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Милица</strong>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Стаменка</strong>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <!-- ВОЈИН -->
-                                    <li>
-                                        <div class="member-card">
-                                            <strong>Војин</strong>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Божидар</strong>
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Владимир</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Чедомир</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Миодраг</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Здравко</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Будимир</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Милунка</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Владимирка</strong>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Нега</strong>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Станојла</strong>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Мара</strong>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Томка</strong>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Јелица</strong>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <!-- ЦВЕТКО -->
-                                    <li>
-                                        <div class="member-card">
-                                            <strong>Цветко</strong>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Вукмир</strong>
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Велимир</strong>
-                                                        </div>
-                                                        <ul>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Мирјана</strong>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Драгана</strong>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Цветко</strong>
-                                                                </div>
-                                                                <ul>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Славица</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Сања</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Александар</strong>
-                                                                        </div>
-                                                                        <ul>
-                                                                            <li>
-                                                                                <div class="member-card">
-                                                                                    <strong>Сергеј</strong>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="member-card">
-                                                                                    <strong>Давид</strong>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="member-card">
-                                                                                    <strong>Нина</strong>
-                                                                                </div>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Сретко</strong>
-                                                                </div>
-                                                                <ul>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Иван</strong>
-                                                                        </div>
-                                                                        <ul>
-                                                                            <li>
-                                                                                <div class="member-card">
-                                                                                    <strong>Лола</strong>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="member-card">
-                                                                                    <strong>Дивна</strong>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="member-card">
-                                                                                    <strong>Ђорђе</strong>
-                                                                                </div>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Мила</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Милош</strong>
-                                                                        </div>
-                                                                        <ul>
-                                                                            <li>
-                                                                                <div class="member-card">
-                                                                                    <strong>Ђурђа</strong>
-                                                                                </div>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Љубиша</strong>
-                                                                </div>
-                                                                <ul>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Никола</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Наташа</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Милена</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Анђелија</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Која</strong>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Тихомир</strong>
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Ђорђе</strong>
-                                                        </div>
-                                                        <ul>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Зорица</strong>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Горан</strong>
-                                                                </div>
-                                                                <ul>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Ружица</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Слободан</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Мирко</strong>
-                                                                        </div>
-                                                                        <ul>
-                                                                            <li>
-                                                                                <div class="member-card">
-                                                                                    <strong>Касија</strong>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="member-card">
-                                                                                    <strong>Антонина</strong>
-                                                                                </div>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Живко</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Радосав</strong>
-                                                        </div>
-                                                        <ul>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Данијела</strong>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Дарко</strong>
-                                                                </div>
-                                                                <ul>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Петар</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Петра</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Павле</strong>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Јован</strong>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Миљојка</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Вулка</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Борка</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Радованка</strong>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Дара</strong>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Петкана</strong>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <!-- АРСЕНИЈЕ -->
-                                    <li>
-                                        <div class="member-card">
-                                            <strong>Арсеније</strong>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Јован</strong>
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Василије</strong>
-                                                        </div>
-                                                        <ul>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Арсеније</strong>
-                                                                </div>
-                                                                <ul>
-                                                                    <li>
-                                                                        <div class="member-card">
-                                                                            <strong>Јовица</strong>
-                                                                        </div>
-                                                                        <ul>
-                                                                            <li>
-                                                                                <div class="member-card">
-                                                                                    <strong>Марија</strong>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="member-card">
-                                                                                    <strong>Василије</strong>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="member-card">
-                                                                                    <strong>Душан</strong>
-                                                                                </div>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Нега</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Пека</strong>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Стеван</strong>
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Николета</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Стојка</strong>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <div class="member-card">
-                                                    <strong>Тиодор</strong>
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Славко</strong>
-                                                        </div>
-                                                        <ul>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Стојан</strong>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Непознато име 1</strong>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Непознато име 2</strong>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Милојица</strong>
-                                                        </div>
-                                                        <ul>
-                                                            <li>
-                                                                <div class="member-card">
-                                                                    <strong>Бранко</strong>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <div class="member-card">
-                                                            <strong>Горица</strong>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ГАЛЕРИЈА СЛИКА -->
-            <section id="galerija" class="section">
-                <h2>Галерија слика</h2>
-                <p class="section-desc">Старе породичне фотографије, родна кућа и призори из Придворице.</p>
-                
-                <div class="gallery-grid">
-                    <!-- Картица 1 -->
-                    <figure class="gallery-item">
-                        <img src="https://placehold.co/600x400/d1fae5/065f46?text=Стара+породична+кућа" alt="Стара кућа у Придворици">
-                        <figcaption>Породично имање у Придворици</figcaption>
-                    </figure>
-
-                    <!-- Картица 2 -->
-                    <figure class="gallery-item">
-                        <img src="https://placehold.co/600x400/fef3c7/92400e?text=Породично+окупљање" alt="Породично окупљање">
-                        <figcaption>Окупљање поводом крсне славе</figcaption>
-                    </figure>
-
-                    <!-- Картица 3 -->
-                    <figure class="gallery-item">
-                        <img src="https://placehold.co/600x400/e0f2fe/075985?text=Панорама+села" alt="Село Придворица">
-                        <figcaption>Поглед на село Придворица, општина Лепосавић</figcaption>
-                    </figure>
-
-                    <!-- Картица 4 -->
-                    <figure class="gallery-item">
-                        <img src="https://placehold.co/600x400/fce7f3/9d174d?text=Архивска+фотографија" alt="Архивска фотографија">
-                        <figcaption>Архивска фотографија предака</figcaption>
-                    </figure>
-                </div>
-            </section>
-
-            <footer class="footer">
-                <p>&copy; 2026 Породица Несторовић • Село Придворица, Општина Лепосавић</p>
-            </footer>
-
-        </main>
+<section id="stablo">
+  <h2>Породично стабло</h2>
+  <p class="hint">Превлачите прстом за померање, штипните са два прста за зум. Дугмад: + / − / ⤢ (цео приказ) / ⛶ (цео екран).</p>
+  <div id="wrap">
+    <div id="vp"><div id="cv"></div></div>
+    <div class="ctl">
+      <button id="bf" aria-label="Цео екран">⛶</button>
+      <button id="bz" aria-label="Приказ целог стабла">⤢</button>
+      <button id="bp" aria-label="Увећај">+</button>
+      <button id="bm" aria-label="Умањи">−</button>
     </div>
+  </div>
+</section>
 
+<section id="galerija">
+  <h2>Галерија слика</h2>
+  <p class="hint">Старе породичне фотографије, родна кућа и призори из Придворице.</p>
+  <div class="gal">
+    <figure><img loading="lazy" src="https://placehold.co/600x400/ffe9c7/b5582b?text=Стара+породична+кућа" alt="Стара кућа у Придворици"><figcaption>Породично имање у Придворици</figcaption></figure>
+    <figure><img loading="lazy" src="https://placehold.co/600x400/fff1b8/9a5b00?text=Породично+окупљање" alt="Породично окупљање"><figcaption>Окупљање поводом крсне славе</figcaption></figure>
+    <figure><img loading="lazy" src="https://placehold.co/600x400/ffd9b0/b5582b?text=Панорама+села" alt="Село Придворица"><figcaption>Поглед на село Придворица, општина Лепосавић</figcaption></figure>
+    <figure><img loading="lazy" src="https://placehold.co/600x400/fbc9a0/8a3a14?text=Архивска+фотографија" alt="Архивска фотографија"><figcaption>Архивска фотографија предака</figcaption></figure>
+  </div>
+</section>
+
+<footer>© 2026 Породица Несторовић • Село Придворица, Општина Лепосавић</footer>
+
+<script>
+// [Име, деца...] — дете без потомака је обичан текст
+const T=['Нестор Шиљић',
+['Саватије','Гвозден',['Илија',['Миладин','Светомир',['Живан','Јелена','Стефан'],'Радојка','Иванка'],['Милоје',['Пуниша','Ђорђе','Милоје','Урош','Тајна']],'Саветка','Радосав','Танкосава','Лепосава','Милица'],'Стаменка'],
+['Војин',['Божидар','Владимир','Чедомир','Миодраг','Здравко','Будимир','Милунка','Владимирка'],'Нега','Станојла','Мара','Томка','Јелица'],
+['Цветко',['Вукмир',['Велимир','Мирјана','Драгана',['Цветко','Славица','Сања',['Александар','Сергеј','Давид','Нина']],['Сретко',['Иван','Лола','Дивна','Ђорђе'],'Милан',['Милош','Ђурђа']],['Љубиша','Никола','Наташа','Милена']],'Анђелија','Која'],['Тихомир',['Ђорђе','Зорица',['Горан','Ружица','Слободан',['Мирко','Касија','Антонина']]],'Живко',['Радосав','Данијела',['Дарко','Петар','Петра','Павле'],'Јован'],'Миљојка','Вулка','Борка','Радованка'],'Дара','Петкана'],
+['Арсеније',['Јован',['Василије',['Арсеније',['Јовица','Марија','Василије','Душан']]],'Нега','Пека'],['Стеван','Николета','Стојка'],['Тиодор',['Славко','Стојан','Непознато име 1','Непознато име 2'],['Милојица','Бранко'],'Горица']]];
+
+function build(n,root){
+  const name=typeof n==='string'?n:n[0], kids=typeof n==='string'?[]:n.slice(1);
+  const li=document.createElement('li'), d=document.createElement('div');
+  d.className='n'+(root?' root':'')+(name.startsWith('Непознато')?' unk':'');
+  d.textContent=name; li.appendChild(d);
+  if(kids.length){const ul=document.createElement('ul');kids.forEach(k=>ul.appendChild(build(k)));li.appendChild(ul);}
+  return li;
+}
+const cv=document.getElementById('cv'),vp=document.getElementById('vp'),wrap=document.getElementById('wrap');
+const rootUl=document.createElement('ul');rootUl.appendChild(build(T,true));cv.appendChild(rootUl);
+
+let s=.8,x=0,y=0;const MIN=.2,MAX=3;
+const apply=()=>cv.style.transform=`translate(${x}px,${y}px) scale(${s})`;
+function zoomAt(f,cx,cy){const ns=Math.min(MAX,Math.max(MIN,s*f));f=ns/s;x=cx-(cx-x)*f;y=cy-(cy-y)*f;s=ns;apply();}
+function center(){const r=vp.getBoundingClientRect();return[r.width/2,r.height/2];}
+function fit(){const w=cv.offsetWidth,h=cv.offsetHeight,r=vp.getBoundingClientRect();
+  s=Math.min(MAX,Math.max(MIN,Math.min(r.width/w,r.height/h)));x=(r.width-w*s)/2;y=(r.height-h*s)/2;apply();}
+function start(){s=.8;x=8;const r=vp.getBoundingClientRect();y=r.height/2-cv.offsetHeight*s/2;apply();}
+
+const P=new Map();let last=0;
+vp.addEventListener('pointerdown',e=>{vp.setPointerCapture(e.pointerId);P.set(e.pointerId,[e.clientX,e.clientY]);vp.classList.add('drag');last=0;});
+vp.addEventListener('pointermove',e=>{
+  if(!P.has(e.pointerId))return;
+  const o=P.get(e.pointerId);P.set(e.pointerId,[e.clientX,e.clientY]);
+  if(P.size===1){x+=e.clientX-o[0];y+=e.clientY-o[1];apply();}
+  else if(P.size===2){
+    const [a,b]=[...P.values()],dist=Math.hypot(a[0]-b[0],a[1]-b[1]);
+    const r=vp.getBoundingClientRect();
+    if(last)zoomAt(dist/last,(a[0]+b[0])/2-r.left,(a[1]+b[1])/2-r.top);
+    last=dist;
+  }
+});
+const up=e=>{P.delete(e.pointerId);last=0;if(!P.size)vp.classList.remove('drag');};
+vp.addEventListener('pointerup',up);vp.addEventListener('pointercancel',up);
+vp.addEventListener('wheel',e=>{e.preventDefault();const r=vp.getBoundingClientRect();zoomAt(e.deltaY<0?1.12:.89,e.clientX-r.left,e.clientY-r.top);},{passive:false});
+document.getElementById('bp').onclick=()=>zoomAt(1.3,...center());
+document.getElementById('bm').onclick=()=>zoomAt(1/1.3,...center());
+document.getElementById('bz').onclick=fit;
+document.getElementById('bf').onclick=()=>{wrap.classList.toggle('full');document.body.style.overflow=wrap.classList.contains('full')?'hidden':'';setTimeout(fit,50);};
+window.addEventListener('load',start);
+</script>
 </body>
 </html>
