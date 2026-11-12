@@ -1,14 +1,14 @@
-/* ОСНОВНА ПОДЕШАВАЊА И НЕЖНА ПАСТЕЛНА ПАЛЕТА БОЈА (ПАСТЕЛНА КАЈСИЈА, ПЕСАК И ТОПЛА КАРАМЕЛА) */
+/* ОСНОВНА ПОДЕШАВАЊА И ТОПЛА, ЧИТКА БРАОН ПАЛЕТА */
 :root {
-    --primary-color: #c27858;      /* Нежна пастелна теракота / кајсија */
-    --primary-light: #dfa084;      /* Светлија пастелна нијанса */
-    --accent-color: #d49a6a;       /* Топла пастелна карамела за линије и акценте */
-    --accent-soft: #fff3e6;        /* Веома светла пастелна крема */
-    --bg-main: #fdfaf7;            /* Топла, прозрачна крем-бела позадина */
+    --primary-color: #6b3a2a;      /* Пријатна, нешто светлија класична браон боја */
+    --primary-dark: #4a271c;       /* Дубља браон за контраст */
+    --accent-color: #a0522d;       /* Топла сиена/карамела за линије и акценте */
+    --accent-gold: #fde047;        /* Златна за наслове */
+    --bg-main: #f9f6f0;            /* Топла, чиста пергамент позадина */
     --bg-card: #ffffff;
-    --text-dark: #3d3532;          /* Мекана тамнобраон-сива за текст */
-    --text-muted: #786c67;
-    --border-color: #eedfd5;       /* Нежна пастелна ивица */
+    --text-dark: #2c221e;          /* Јасан, тамни текст за лако читљивост */
+    --text-muted: #665c58;
+    --border-color: #e3d7cb;       /* Блага ивица */
     --sidebar-width: 300px;
 }
 
@@ -38,7 +38,7 @@ body {
 /* БОЧНИ МЕНИ */
 .sidebar {
     width: var(--sidebar-width);
-    background: linear-gradient(180deg, #b86f52 0%, #cf8a6c 100%);
+    background: linear-gradient(180deg, #593022 0%, #6b3a2a 100%);
     color: #ffffff;
     padding: 2rem 1.5rem;
     position: fixed;
@@ -50,7 +50,7 @@ body {
     flex-direction: column;
     gap: 1.5rem;
     z-index: 100;
-    box-shadow: 2px 0 15px rgba(184, 111, 82, 0.12);
+    box-shadow: 2px 0 15px rgba(74, 39, 28, 0.15);
 }
 
 .sidebar-top {
@@ -67,7 +67,7 @@ body {
 
 .sidebar-header .subtitle {
     font-size: 0.92rem;
-    color: #fff3e0;
+    color: #fde68a;
     font-weight: 500;
     margin-top: 0.2rem;
 }
@@ -81,20 +81,20 @@ body {
     display: none;
     align-items: center;
     gap: 0.5rem;
-    background-color: rgba(255, 255, 255, 0.22);
+    background-color: rgba(255, 255, 255, 0.18);
     color: #ffffff;
     padding: 0.55rem 0.95rem;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
     font-size: 0.95rem;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.35);
     user-select: none;
     transition: background-color 0.2s;
 }
 
 .menu-btn:hover {
-    background-color: rgba(255, 255, 255, 0.32);
+    background-color: rgba(255, 255, 255, 0.28);
 }
 
 .hamburger-icon {
@@ -134,8 +134,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.28);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
     padding: 1rem 0;
 }
 
@@ -149,13 +149,13 @@ body {
 }
 
 .nav-menu a:hover {
-    background-color: rgba(255, 255, 255, 0.22);
+    background-color: rgba(255, 255, 255, 0.2);
     transform: translateX(4px);
 }
 
 .sidebar-info h3 {
     font-size: 0.98rem;
-    color: #fff6e5;
+    color: var(--accent-gold);
     margin-bottom: 0.4rem;
     margin-top: 1.1rem;
     text-transform: uppercase;
@@ -168,9 +168,8 @@ body {
 
 .sidebar-info p {
     font-size: 0.92rem;
-    color: #ffffff;
+    color: #fcfbf9;
     line-height: 1.55;
-    opacity: 0.95;
 }
 
 /* ГЛАВНИ САДРЖАЈ */
@@ -183,24 +182,24 @@ body {
 
 /* НАСЛОВНА СЕКЦИЈА */
 .hero {
-    background: linear-gradient(135deg, #c27858 0%, #d99b78 55%, #e6b89c 100%);
+    background: linear-gradient(135deg, #6b3a2a 0%, #854936 60%, #a0522d 100%);
     color: #ffffff;
     padding: 3.5rem 2rem;
     border-radius: 16px;
     text-align: center;
     margin-bottom: 3rem;
-    box-shadow: 0 8px 25px rgba(194, 120, 88, 0.16);
+    box-shadow: 0 8px 25px rgba(107, 58, 42, 0.18);
 }
 
 .hero h1 {
     font-size: 2.6rem;
     margin-bottom: 0.5rem;
-    text-shadow: 0 2px 6px rgba(130, 70, 45, 0.18);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .hero p {
     font-size: 1.25rem;
-    color: #fff8ee;
+    color: #fef08a;
     font-weight: 600;
 }
 
@@ -211,7 +210,7 @@ body {
 
 .section h2 {
     font-size: 1.85rem;
-    color: #a86246;
+    color: var(--primary-color);
     border-bottom: 3px solid var(--accent-color);
     display: inline-block;
     padding-bottom: 0.3rem;
@@ -230,7 +229,7 @@ body {
     border-radius: 16px;
     padding: 2.2rem 1rem;
     overflow-x: auto;
-    box-shadow: 0 4px 15px rgba(194, 120, 88, 0.05);
+    box-shadow: 0 4px 15px rgba(74, 39, 28, 0.05);
 }
 
 .tree {
@@ -303,30 +302,30 @@ body {
 
 /* Картица члана породице */
 .member-card {
-    border: 2px solid var(--border-color);
-    background: linear-gradient(180deg, #ffffff 0%, #fdf8f4 100%);
+    border: 2px solid #e3d7cb;
+    background: linear-gradient(180deg, #ffffff 0%, #faf7f2 100%);
     padding: 0.85rem 1.25rem;
     display: inline-block;
     border-radius: 12px;
     transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
     min-width: 155px;
-    box-shadow: 0 2px 6px rgba(194, 120, 88, 0.06);
+    box-shadow: 0 2px 6px rgba(74, 39, 28, 0.06);
 }
 
 .member-card:hover {
     transform: translateY(-3px);
-    border-color: var(--primary-color);
-    box-shadow: 0 6px 14px rgba(194, 120, 88, 0.14);
+    border-color: var(--accent-color);
+    box-shadow: 0 6px 14px rgba(160, 82, 45, 0.16);
 }
 
 .member-card.root {
-    background: linear-gradient(135deg, #c27858 0%, #d99b78 100%);
+    background: linear-gradient(135deg, #6b3a2a 0%, #854936 100%);
     color: #ffffff;
-    border-color: #b86f52;
+    border-color: #4a271c;
 }
 
 .member-card.root span {
-    color: #fff6e5;
+    color: #fde68a;
 }
 
 .member-card strong {
@@ -348,4 +347,31 @@ body {
     gap: 1.5rem;
 }
 
-.
+.gallery-item {
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(74, 39, 28, 0.06);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-color);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item figcaption {
+    padding: 0.95rem;
+    font-size: 0.92rem;
+    color: var(--text-dark);
+    text-align: center;
+    font-weight: 600;
+    background-color
