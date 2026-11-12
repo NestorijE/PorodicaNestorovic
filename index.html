@@ -3,112 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Porodica Nestorović - Pridvorica, Leposavić</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Породица Несторовић - Придворица, Лепосавић</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
     <div class="layout">
-        <!-- BOČNI MENI (SIDEBAR) -->
+        <!-- БОЧНИ МЕНИ (SIDEBAR) -->
         <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2>Nestorovići</h2>
-                <p class="subtitle">Pridvorica • Leposavić</p>
+            <div class="sidebar-top">
+                <div class="sidebar-header">
+                    <h2>Несторовићи</h2>
+                    <p class="subtitle">Придворица • Лепосавић</p>
+                </div>
+
+                <!-- Чист CSS прекидач за мобилни мени (без JavaScript-а) -->
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                <label for="menu-toggle" class="menu-btn" aria-label="Отвори или затвори мени">
+                    <span class="hamburger-icon"></span>
+                    <span class="menu-btn-text">Мени</span>
+                </label>
             </div>
 
-            <nav class="nav-menu">
-                <a href="#pocetna">Početna</a>
-                <a href="#stablo">Porodično stablo</a>
-                <a href="#galerija">Galerija slika</a>
-            </nav>
+            <div class="sidebar-collapsible">
+                <nav class="nav-menu">
+                    <a href="#pocetna">Почетна</a>
+                    <a href="#stablo">Породично стабло</a>
+                    <a href="#galerija">Галерија слика</a>
+                </nav>
 
-            <div class="sidebar-info">
-                <h3>O porodici</h3>
-                <p>
-                    Porodica Nestorović vodi poreklo iz sela Pridvorica u opštini Leposavić, 
-                    na severu Kosova i Metohije. Kroz generacije smo čuvali tradiciju, 
-                    krsnu slavu i porodične vrednosti naših predaka.
-                </p>
+                <div class="sidebar-info">
+                    <h3>О породици</h3>
+                    <p>
+                        Породица Несторовић води порекло из села Придворица у општини Лепосавић, 
+                        на северу Косова и Метохије. Кроз генерације смо чували традицију, 
+                        крсну славу и породичне вредности наших предака.
+                    </p>
 
-                <h3>Svrha sajta</h3>
-                <p>
-                    Ovaj sajt je napravljen kao digitalni arhiv sa ciljem da sačuva 
-                    uspomene, poveže sve ogranke naše porodice i mlađim generacijama 
-                    ostavi jasan trag o korenima i poreklu.
-                </p>
+                    <h3>Сврха сајта</h3>
+                    <p>
+                        Овај сајт је направљен као дигитални архив са циљем да сачува 
+                        успомене, повеже све огранке наше породице и млађим генерацијама 
+                        остави јасан траг о коренима и пореклу.
+                    </p>
+                </div>
             </div>
         </aside>
 
-        <!-- GLAVNI SADRŽAJ -->
+        <!-- ГЛАВНИ САДРЖАЈ -->
         <main class="main-content">
             
-            <!-- NASLOVNA SEKCIJA -->
+            <!-- НАСЛОВНА СЕКЦИЈА -->
             <header id="pocetna" class="hero">
-                <h1>Porodica Nestorović</h1>
-                <p>Selo Pridvorica, Opština Leposavić</p>
+                <h1>Породица Несторовић</h1>
+                <p>Село Придворица, Општина Лепосавић</p>
             </header>
 
-            <!-- PORODIČNO STABLO -->
+            <!-- ПОРОДИЧНО СТАБЛО -->
             <section id="stablo" class="section">
-                <h2>Porodično stablo</h2>
-                <p class="section-desc">Pregled generacija i potomaka (primer strukture – lako se dopunjuje u HTML-u).</p>
+                <h2>Породично стабло</h2>
+                <p class="section-desc">Преглед генерација и потомака (пример структуре – лако се допуњује у HTML-у).</p>
                 
                 <div class="tree-container">
                     <div class="tree">
                         <ul>
                             <li>
-                                <!-- PRVA GENERACIJA -->
+                                <!-- ПРВА ГЕНЕРАЦИЈА -->
                                 <div class="member-card root">
-                                    <strong>Najstariji poznati predak</strong>
-                                    <span>Ime i prezime (npr. 1880–1955)</span>
+                                    <strong>Најстарији познати предак</strong>
+                                    <span>Име и презиме (нпр. 1880–1955)</span>
                                 </div>
                                 <ul>
-                                    <!-- DRUGA GENERACIJA -->
+                                    <!-- ДРУГА ГЕНЕРАЦИЈА -->
                                     <li>
                                         <div class="member-card">
-                                            <strong>Sin / Ćerka 1</strong>
-                                            <span>Ime (1910–1985)</span>
+                                            <strong>Син / Ћерка 1</strong>
+                                            <span>Име (1910–1985)</span>
                                         </div>
                                         <ul>
-                                            <!-- TREĆA GENERACIJA -->
+                                            <!-- ТРЕЋА ГЕНЕРАЦИЈА -->
                                             <li>
                                                 <div class="member-card">
-                                                    <strong>Unuk 1</strong>
-                                                    <span>Ime (1940–2015)</span>
+                                                    <strong>Унук 1</strong>
+                                                    <span>Име (1940–2015)</span>
                                                 </div>
                                                 <ul>
                                                     <li>
                                                         <div class="member-card">
-                                                            <strong>Praunuk 1</strong>
-                                                            <span>Ime (1970–)</span>
+                                                            <strong>Праунук 1</strong>
+                                                            <span>Име (1970–)</span>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="member-card">
-                                                            <strong>Praunuk 2</strong>
-                                                            <span>Ime (1973–)</span>
+                                                            <strong>Праунук 2</strong>
+                                                            <span>Име (1973–)</span>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <div class="member-card">
-                                                    <strong>Unuk 2</strong>
-                                                    <span>Ime (1945–)</span>
+                                                    <strong>Унук 2</strong>
+                                                    <span>Име (1945–)</span>
                                                 </div>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <div class="member-card">
-                                            <strong>Sin / Ćerka 2</strong>
-                                            <span>Ime (1914–1992)</span>
+                                            <strong>Син / Ћерка 2</strong>
+                                            <span>Име (1914–1992)</span>
                                         </div>
                                         <ul>
                                             <li>
                                                 <div class="member-card">
-                                                    <strong>Unuk 3</strong>
-                                                    <span>Ime (1948–)</span>
+                                                    <strong>Унук 3</strong>
+                                                    <span>Име (1948–)</span>
                                                 </div>
                                             </li>
                                         </ul>
@@ -120,41 +131,41 @@
                 </div>
             </section>
 
-            <!-- GALERIJA SLIKA -->
+            <!-- ГАЛЕРИЈА СЛИКА -->
             <section id="galerija" class="section">
-                <h2>Galerija slika</h2>
-                <p class="section-desc">Stare porodične fotografije, rodna kuća i prizori iz Pridvorice.</p>
+                <h2>Галерија слика</h2>
+                <p class="section-desc">Старе породичне фотографије, родна кућа и призори из Придворице.</p>
                 
                 <div class="gallery-grid">
-                    <!-- Kartica 1 -->
+                    <!-- Картица 1 -->
                     <figure class="gallery-item">
-                        <!-- Zamenite src putanjom do vaše slike, npr. "slike/kuca.jpg" -->
-                        <img src="https://placehold.co/600x400/e2e8f0/475569?text=Stara+porodicna+kuca" alt="Stara kuća u Pridvorici">
-                        <figcaption>Porodično imanje u Pridvorici</figcaption>
+                        <!-- Замените src путањом до ваше слике, нпр. "slike/kuca.jpg" -->
+                        <img src="https://placehold.co/600x400/d1fae5/065f46?text=Стара+породична+кућа" alt="Стара кућа у Придворици">
+                        <figcaption>Породично имање у Придворици</figcaption>
                     </figure>
 
-                    <!-- Kartica 2 -->
+                    <!-- Картица 2 -->
                     <figure class="gallery-item">
-                        <img src="https://placehold.co/600x400/e2e8f0/475569?text=Porodicno+okupljanje" alt="Porodično okupljanje">
-                        <figcaption>Okupljanje povodom krsne slave</figcaption>
+                        <img src="https://placehold.co/600x400/fef3c7/92400e?text=Породично+окупљање" alt="Породично окупљање">
+                        <figcaption>Окупљање поводом крсне славе</figcaption>
                     </figure>
 
-                    <!-- Kartica 3 -->
+                    <!-- Картица 3 -->
                     <figure class="gallery-item">
-                        <img src="https://placehold.co/600x400/e2e8f0/475569?text=Panorama+sela" alt="Selo Pridvorica">
-                        <figcaption>Pogled na selo Pridvorica, opština Leposavić</figcaption>
+                        <img src="https://placehold.co/600x400/e0f2fe/075985?text=Панорама+села" alt="Село Придворица">
+                        <figcaption>Поглед на село Придворица, општина Лепосавић</figcaption>
                     </figure>
 
-                    <!-- Kartica 4 -->
+                    <!-- Картица 4 -->
                     <figure class="gallery-item">
-                        <img src="https://placehold.co/600x400/e2e8f0/475569?text=Arhivska+fotografija" alt="Arhivska fotografija">
-                        <figcaption>Arhivska fotografija predaka</figcaption>
+                        <img src="https://placehold.co/600x400/fce7f3/9d174d?text=Архивска+фотографија" alt="Архивска фотографија">
+                        <figcaption>Архивска фотографија предака</figcaption>
                     </figure>
                 </div>
             </section>
 
             <footer class="footer">
-                <p>&copy; 2026 Porodica Nestorović • Selo Pridvorica, Opština Leposavić</p>
+                <p>&copy; 2026 Породица Несторовић • Село Придворица, Општина Лепосавић</p>
             </footer>
 
         </main>
