@@ -23,6 +23,9 @@ h2{color:var(--g);margin:0 0 10px;font-size:clamp(22px,6vw,30px)}
 h3{color:var(--g);margin:18px 0 6px}
 .card{background:#fffdf6;border:1px solid #f3dcb0;border-radius:14px;padding:16px;box-shadow:0 1px 6px #0001}
 .card a{color:var(--g);font-weight:600;word-break:break-all}
+.bar{max-width:900px;margin:0 auto 10px;padding:0 16px}
+.bar button{background:var(--g);color:#fff;border:0;border-radius:22px;padding:11px 18px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer}
+.bar button:active{background:#954421}
 .hint{font-size:14px;color:#6b7280;margin:0 0 10px}
 
 /* Stablo */
@@ -33,28 +36,47 @@ h3{color:var(--g);margin:18px 0 6px}
 #vp.drag{cursor:grabbing}
 #wrap.full{position:fixed;inset:0;z-index:50;border:0}
 #wrap.full #vp{height:100%}
-#cv{transform-origin:0 0;position:absolute;left:0;top:0;padding:20px;will-change:transform}
+#cv{transform-origin:0 0;position:absolute;left:0;top:0;padding:12px;will-change:transform}
 .ctl{position:absolute;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px;z-index:5}
 .ctl button{width:46px;height:46px;border:0;border-radius:50%;background:var(--g);color:#fff;font-size:22px;box-shadow:0 2px 8px #0004;cursor:pointer}
 .ctl button:active{background:#954421}
-#cv ul{list-style:none;margin:0 0 0 20px;padding:0;position:relative}
-#cv ul::before{content:"";position:absolute;left:-20px;top:50%;width:20px;border-top:2px solid var(--line)}
-#cv>ul{margin:0}#cv>ul::before{display:none}
-#cv li{position:relative;display:flex;align-items:center;padding:4px 0}
-#cv ul ul>li,#cv li li{padding-left:0}
-#cv ul li::before{content:"";position:absolute;left:0;top:50%;width:0;border-top:2px solid var(--line)}
-#cv ul li::after{content:"";position:absolute;left:-0px;top:0;bottom:0;border-left:2px solid var(--line);display:none}
-#cv ul ul li::after{display:block;left:-0px}
-#cv ul ul li:first-child::after{top:50%}
-#cv ul ul li:last-child::after{bottom:50%}
-#cv ul ul li:only-child::after{display:none}
-#cv ul ul li{margin-left:0}
-.n{white-space:nowrap;background:var(--g2);color:#5a2d12;border:2px solid var(--g);border-radius:10px;padding:6px 12px;font-size:15px;font-weight:600;margin-right:0}
-.n.root{background:var(--g);color:#fff;font-size:17px}
-.n.unk{opacity:.6;font-style:italic;border-style:dashed}
-#cv ul ul>li>.n{margin-left:20px}
-#cv ul ul>li>.n::before{content:none}
-#cv ul ul>li::before{width:20px}
+#cv .n{white-space:nowrap;background:var(--g2);color:#5a2d12;border:2px solid var(--g);border-radius:9px;padding:4px 9px;font-size:14px;font-weight:600;line-height:1.3}
+#cv .n.root{background:var(--g);color:#fff;font-size:16px}
+#cv .n.x{cursor:pointer}
+#cv .b{display:inline-block;margin-left:7px;min-width:20px;text-align:center;background:var(--g);color:#fff;border-radius:9px;font-size:12px;padding:0 5px}
+#cv .n.root .b{background:#fff;color:var(--g)}
+#cv li.c>ul{display:none}
+#cv .n.unk{opacity:.6;font-style:italic;border-style:dashed}
+#cv ul{list-style:none;margin:0;padding:0;position:relative}
+#cv li{position:relative}
+#cv li::before,#cv li::after,#cv ul::before{content:"";position:absolute}
+/* Хоризонтално (генерације слева удесно) */
+#cv.h ul{margin-left:14px}
+#cv.h>ul{margin:0}
+#cv.h ul::before{left:-14px;top:50%;width:14px;border-top:2px solid var(--line)}
+#cv.h>ul::before{display:none}
+#cv.h li{display:flex;align-items:center;padding:2px 0 2px 14px}
+#cv.h>ul>li{padding-left:0}
+#cv.h li::before{display:none}
+#cv.h li::after{left:0;top:0;bottom:0;border-left:2px solid var(--line)}
+#cv.h li:first-child::after{top:50%}#cv.h li:last-child::after{bottom:50%}
+#cv.h li:only-child::after,#cv.h>ul>li::after{display:none}
+#cv.h li li::before{display:block;left:0;top:50%;width:14px;border-top:2px solid var(--line)}
+/* Вертикално (генерације одозго надоле, деца у реду) */
+#cv.v ul{display:flex;justify-content:center;padding-top:16px}
+#cv.v>ul{padding-top:0}
+#cv.v ul::before{left:50%;top:0;height:16px;border-left:2px solid var(--line)}
+#cv.v>ul::before{display:none}
+#cv.v li{display:flex;flex-direction:column;align-items:center;padding:16px 3px 0}
+#cv.v>ul>li{padding-top:0}
+#cv.v li::before,#cv.v li::after{top:0;height:16px;width:50%;right:50%;border-top:2px solid var(--line)}
+#cv.v li::after{right:auto;left:50%;border-left:2px solid var(--line)}
+#cv.v li:last-child::before{border-right:2px solid var(--line);border-radius:0 6px 0 0}
+#cv.v li:first-child::after{border-radius:6px 0 0 0}
+#cv.v li:first-child::before,#cv.v li:last-child::after{border:0}
+#cv.v li:only-child::before{display:none}
+#cv.v li:only-child::after{border-top:0;border-radius:0}
+#cv.v>ul>li::before,#cv.v>ul>li::after{display:none}
 
 /* Галерија */
 .gal{display:grid;grid-template-columns:1fr;gap:16px}
@@ -86,10 +108,13 @@ footer{text-align:center;padding:24px 16px calc(24px + env(safe-area-inset-botto
 
 <section id="stablo">
   <h2>Породично стабло</h2>
-  <p class="hint">Превлачите прстом за померање, штипните са два прста за зум. Дугмад: + / − / ⤢ (цео приказ) / ⛶ (цео екран).</p>
+  <p class="hint">Превлачите прстом за померање, штипните са два прста за зум. Дугмад: + / − / ⤢ (цео приказ) / ⛶ (цео екран) / ⇄ (промена распореда) / ⊞ (отвори или затвори све). Додирните име са знаком + да отворите следећи ниво.</p>
+  <div class="bar"><button id="bx">Прошири цело стабло</button></div>
   <div id="wrap">
-    <div id="vp"><div id="cv"></div></div>
+    <div id="vp"><div id="cv" class="v"></div></div>
     <div class="ctl">
+      <button id="bt" aria-label="Отвори или затвори све">⊞</button>
+      <button id="bo" aria-label="Промени распоред">⇄</button>
       <button id="bf" aria-label="Цео екран">⛶</button>
       <button id="bz" aria-label="Приказ целог стабла">⤢</button>
       <button id="bp" aria-label="Увећај">+</button>
@@ -119,16 +144,28 @@ const T=['Нестор Шиљић',
 ['Цветко',['Вукмир',['Велимир','Мирјана','Драгана',['Цветко','Славица','Сања',['Александар','Сергеј','Давид','Нина']],['Сретко',['Иван','Лола','Дивна','Ђорђе'],'Милан',['Милош','Ђурђа']],['Љубиша','Никола','Наташа','Милена']],'Анђелија','Која'],['Тихомир',['Ђорђе','Зорица',['Горан','Ружица','Слободан',['Мирко','Касија','Антонина']]],'Живко',['Радосав','Данијела',['Дарко','Петар','Петра','Павле'],'Јован'],'Миљојка','Вулка','Борка','Радованка'],'Дара','Петкана'],
 ['Арсеније',['Јован',['Василије',['Арсеније',['Јовица','Марија','Василије','Душан']]],'Нега','Пека'],['Стеван','Николета','Стојка'],['Тиодор',['Славко','Стојан','Непознато име 1','Непознато име 2'],['Милојица','Бранко'],'Горица']]];
 
-function build(n,root){
+function badge(li){const b=li.querySelector(':scope>.n>.b');if(b)b.textContent=li.classList.contains('c')?'+'+li.querySelector(':scope>ul').children.length:'−';}
+function build(n,depth){
   const name=typeof n==='string'?n:n[0], kids=typeof n==='string'?[]:n.slice(1);
   const li=document.createElement('li'), d=document.createElement('div');
-  d.className='n'+(root?' root':'')+(name.startsWith('Непознато')?' unk':'');
+  li.dataset.d=depth;
+  d.className='n'+(depth===0?' root':'')+(name.startsWith('Непознато')?' unk':'');
   d.textContent=name; li.appendChild(d);
-  if(kids.length){const ul=document.createElement('ul');kids.forEach(k=>ul.appendChild(build(k)));li.appendChild(ul);}
+  if(kids.length){
+    const ul=document.createElement('ul');kids.forEach(k=>ul.appendChild(build(k,depth+1)));li.appendChild(ul);
+    d.classList.add('x');const b=document.createElement('span');b.className='b';d.appendChild(b);
+    if(depth>=1)li.classList.add('c');badge(li);
+  }
   return li;
 }
+function toggle(li){
+  if(!li.querySelector(':scope>ul'))return;
+  const n=li.firstChild,r0=n.getBoundingClientRect();
+  li.classList.toggle('c');badge(li);
+  const r1=n.getBoundingClientRect();x+=r0.left-r1.left;y+=r0.top-r1.top;apply();
+}
 const cv=document.getElementById('cv'),vp=document.getElementById('vp'),wrap=document.getElementById('wrap');
-const rootUl=document.createElement('ul');rootUl.appendChild(build(T,true));cv.appendChild(rootUl);
+const rootUl=document.createElement('ul');rootUl.appendChild(build(T,0));cv.appendChild(rootUl);
 
 let s=.8,x=0,y=0;const MIN=.2,MAX=3;
 const apply=()=>cv.style.transform=`translate(${x}px,${y}px) scale(${s})`;
@@ -136,10 +173,12 @@ function zoomAt(f,cx,cy){const ns=Math.min(MAX,Math.max(MIN,s*f));f=ns/s;x=cx-(c
 function center(){const r=vp.getBoundingClientRect();return[r.width/2,r.height/2];}
 function fit(){const w=cv.offsetWidth,h=cv.offsetHeight,r=vp.getBoundingClientRect();
   s=Math.min(MAX,Math.max(MIN,Math.min(r.width/w,r.height/h)));x=(r.width-w*s)/2;y=(r.height-h*s)/2;apply();}
-function start(){s=.8;x=8;const r=vp.getBoundingClientRect();y=r.height/2-cv.offsetHeight*s/2;apply();}
+function start(){const r=vp.getBoundingClientRect();s=.8;
+  if(cv.classList.contains('v')){x=r.width/2-cv.offsetWidth/2*s;y=8;}else{x=8;y=r.height/2-cv.offsetHeight*s/2;}apply();}
 
 const P=new Map();let last=0;
-vp.addEventListener('pointerdown',e=>{vp.setPointerCapture(e.pointerId);P.set(e.pointerId,[e.clientX,e.clientY]);vp.classList.add('drag');last=0;});
+let tap=null;
+vp.addEventListener('pointerdown',e=>{vp.setPointerCapture(e.pointerId);tap=P.size?null:{n:e.target.closest('.n'),x:e.clientX,y:e.clientY};P.set(e.pointerId,[e.clientX,e.clientY]);vp.classList.add('drag');last=0;});
 vp.addEventListener('pointermove',e=>{
   if(!P.has(e.pointerId))return;
   const o=P.get(e.pointerId);P.set(e.pointerId,[e.clientX,e.clientY]);
@@ -151,12 +190,21 @@ vp.addEventListener('pointermove',e=>{
     last=dist;
   }
 });
-const up=e=>{P.delete(e.pointerId);last=0;if(!P.size)vp.classList.remove('drag');};
+const up=e=>{const t=tap;P.delete(e.pointerId);last=0;if(!P.size)vp.classList.remove('drag');
+  if(e.type==='pointerup'&&t&&!P.size&&t.n&&Math.hypot(e.clientX-t.x,e.clientY-t.y)<8)toggle(t.n.parentNode);tap=null;};
 vp.addEventListener('pointerup',up);vp.addEventListener('pointercancel',up);
 vp.addEventListener('wheel',e=>{e.preventDefault();const r=vp.getBoundingClientRect();zoomAt(e.deltaY<0?1.12:.89,e.clientX-r.left,e.clientY-r.top);},{passive:false});
 document.getElementById('bp').onclick=()=>zoomAt(1.3,...center());
 document.getElementById('bm').onclick=()=>zoomAt(1/1.3,...center());
 document.getElementById('bz').onclick=fit;
+let allOpen=false;
+function toggleAll(){allOpen=!allOpen;
+  cv.querySelectorAll('li').forEach(li=>{if(li.querySelector(':scope>ul')){li.classList.toggle('c',!allOpen&&+li.dataset.d>=1);badge(li);}});
+  document.getElementById('bt').textContent=allOpen?'⊟':'⊞';
+  document.getElementById('bx').textContent=allOpen?'Скупи стабло':'Прошири цело стабло';
+  allOpen?fit():start();}
+document.getElementById('bt').onclick=document.getElementById('bx').onclick=toggleAll;
+document.getElementById('bo').onclick=()=>{cv.classList.toggle('v');cv.classList.toggle('h');start();};
 document.getElementById('bf').onclick=()=>{wrap.classList.toggle('full');document.body.style.overflow=wrap.classList.contains('full')?'hidden':'';setTimeout(fit,50);};
 window.addEventListener('load',start);
 </script>
