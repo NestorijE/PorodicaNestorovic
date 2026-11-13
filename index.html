@@ -8,14 +8,15 @@
 <style>
 :root{--g:#b5582b;--g2:#ffe9c7;--line:#e0a860;--bg:#fff8ec;--tx:#4a3426}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:70px}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;-webkit-text-size-adjust:100%}
 nav{position:sticky;top:0;z-index:20;background:linear-gradient(90deg,#b5582b,#d9822b);box-shadow:0 2px 10px #0003;display:flex;justify-content:center;gap:6px;padding:8px;padding-top:calc(8px + env(safe-area-inset-top))}
 nav a{color:#fff;text-decoration:none;padding:9px 12px;font-size:14px;font-weight:600;border-radius:22px;display:flex;align-items:center;gap:6px;white-space:nowrap;font-family:Georgia,"Times New Roman",serif;transition:background .2s,color .2s}
-nav a span{display:none}
+nav a{flex-direction:column;gap:2px;padding:6px 10px;font-size:13px;line-height:1.2}
+nav a span{font-size:20px;line-height:1}
 nav a.on{background:#fff;color:var(--g);box-shadow:0 1px 4px #0003}
 nav a:active{background:#ffffff40}
-@media(min-width:480px){nav a{padding:9px 16px;font-size:16px}nav a span{display:inline}}
+@media(min-width:480px){nav a{flex-direction:row;gap:6px;padding:9px 16px;font-size:16px;line-height:inherit}nav a span{font-size:inherit}}
 header{background:linear-gradient(160deg,#c8622c,#f0a93a);color:#fff;text-align:center;padding:48px 20px;border-bottom:4px solid #e0a860}
 header h1{margin:0 0 6px;font-size:clamp(26px,8vw,42px)}
 header p{margin:0;opacity:.9}
@@ -38,10 +39,10 @@ h2::after{content:"";display:block;width:64px;height:3px;background:#e0a860;marg
 #stablo{max-width:none;padding:28px 0}
 #stablo h2,#stablo .hint{padding:0 16px;max-width:900px;margin-left:auto;margin-right:auto}
 #wrap{position:relative;background:#fff;border-top:1px solid #d1d5db;border-bottom:1px solid #d1d5db}
-#vp{height:72vh;overflow:hidden;touch-action:none;cursor:grab;position:relative}
+#vp{height:72vh;overflow:hidden;touch-action:pan-y;cursor:grab;position:relative}
 #vp.drag{cursor:grabbing}
 #wrap.full{position:fixed;inset:0;z-index:50;border:0}
-#wrap.full #vp{height:100%}
+#wrap.full #vp{height:100%;touch-action:none}
 #cv{transform-origin:0 0;position:absolute;left:0;top:0;padding:12px;will-change:transform}
 .ctl{position:absolute;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px;z-index:5}
 .ctl button{width:46px;height:46px;border:0;border-radius:50%;background:var(--g);color:#fff;font-size:22px;box-shadow:0 2px 8px #0004;cursor:pointer}
@@ -98,6 +99,7 @@ h2::after{content:"";display:block;width:64px;height:3px;background:#e0a860;marg
 .gal img{cursor:zoom-in}
 #lb{position:fixed;inset:0;z-index:60;background:#000d;display:flex;align-items:center;justify-content:center;padding:12px;cursor:zoom-out}
 #lb[hidden]{display:none}
+#lx{position:absolute;top:calc(12px + env(safe-area-inset-top));right:12px;width:46px;height:46px;border:0;border-radius:50%;background:#fff;color:var(--g);font-size:22px;font-weight:700;box-shadow:0 2px 8px #0006;cursor:pointer}
 #lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px}
 footer{text-align:center;padding:24px 16px calc(24px + env(safe-area-inset-bottom));background:var(--g);color:#ffe9c7;font-size:14px}
 </style>
@@ -123,7 +125,7 @@ footer{text-align:center;padding:24px 16px calc(24px + env(safe-area-inset-botto
 
 <section id="stablo">
   <h2>Породично стабло</h2>
-  <p class="hint">Додирните име да видите потомке. Дугмад + и − увећавају и умањују стабло, а ⤢ приказује цело стабло.</p>
+  <p class="hint">Додирните име да видите потомке. Дугмад + и − увећавају и умањују стабло, а ⤢ приказује цело стабло. За слободно померање додирните ⛶.</p>
   <div class="bar"><button id="bx">Прошири цело стабло</button><button id="bc">Скупи стабло</button></div>
   <div id="wrap">
     <div id="vp"><div id="cv" class="v"></div></div>
@@ -152,7 +154,7 @@ footer{text-align:center;padding:24px 16px calc(24px + env(safe-area-inset-botto
   <div class="gal one">
     <figure><img loading="lazy" src="slike/panorama-socanica.jpg" alt="Панорама Сочаница 2008."><figcaption>Панорама Сочаница 2008.</figcaption></figure>
   </div>
-  <div id="lb" hidden><img alt=""></div>
+  <div id="lb" hidden><button id="lx" aria-label="Затвори">✕</button><img alt=""></div>
 </section>
 
 <footer>© 2026 Породица Несторовић • Село Придворица, Општина Лепосавић</footer>
@@ -214,7 +216,7 @@ vp.addEventListener('pointermove',e=>{
 const up=e=>{const t=tap;P.delete(e.pointerId);last=0;if(!P.size)vp.classList.remove('drag');
   if(e.type==='pointerup'&&t&&!P.size&&t.n&&Math.hypot(e.clientX-t.x,e.clientY-t.y)<8)toggle(t.n.parentNode);tap=null;};
 vp.addEventListener('pointerup',up);vp.addEventListener('pointercancel',up);
-vp.addEventListener('wheel',e=>{e.preventDefault();const r=vp.getBoundingClientRect();zoomAt(e.deltaY<0?1.12:.89,e.clientX-r.left,e.clientY-r.top);},{passive:false});
+vp.addEventListener('wheel',e=>{if(!e.ctrlKey&&!e.metaKey&&!wrap.classList.contains('full'))return;e.preventDefault();const r=vp.getBoundingClientRect();zoomAt(e.deltaY<0?1.12:.89,e.clientX-r.left,e.clientY-r.top);},{passive:false});
 document.getElementById('bp').onclick=()=>zoomAt(1.3,...center());
 document.getElementById('bm').onclick=()=>zoomAt(1/1.3,...center());
 document.getElementById('bz').onclick=fit;
@@ -230,8 +232,9 @@ document.getElementById('bo').onclick=()=>{cv.classList.toggle('v');cv.classList
 document.getElementById('bf').onclick=()=>{wrap.classList.toggle('full');document.body.style.overflow=wrap.classList.contains('full')?'hidden':'';setTimeout(fit,50);};
 window.addEventListener('load',start);
 const lb=document.getElementById('lb');
-document.querySelectorAll('.gal img').forEach(i=>i.onclick=()=>{lb.firstChild.src=i.src;lb.hidden=false;});
+document.querySelectorAll('.gal img').forEach(i=>i.onclick=()=>{lb.querySelector("img").src=i.src;lb.hidden=false;});
 lb.onclick=()=>lb.hidden=true;
+addEventListener("keydown",e=>{if(e.key==="Escape")lb.hidden=true;});
 const links=[...document.querySelectorAll('nav a')],secs=links.map(a=>document.querySelector(a.getAttribute('href')));
 function mark(){let i=0;secs.forEach((e,k)=>{if(e.getBoundingClientRect().top<=110)i=k;});
   if(innerHeight+scrollY>=document.body.scrollHeight-4)i=secs.length-1;
