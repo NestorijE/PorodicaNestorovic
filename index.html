@@ -8,25 +8,31 @@
 <style>
 :root{--g:#b5582b;--g2:#ffe9c7;--line:#e0a860;--bg:#fff8ec;--tx:#4a3426}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:56px}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;-webkit-text-size-adjust:100%}
-nav{position:sticky;top:0;z-index:20;background:var(--g);display:flex;justify-content:space-around;padding-top:env(safe-area-inset-top)}
-nav a{color:#fff;text-decoration:none;padding:14px 8px;font-size:15px;flex:1;text-align:center}
-nav a:active{background:#954421}
-header{background:linear-gradient(160deg,#c8622c,#f0a93a);color:#fff;text-align:center;padding:48px 20px}
+nav{position:sticky;top:0;z-index:20;background:linear-gradient(90deg,#b5582b,#d9822b);box-shadow:0 2px 10px #0003;display:flex;justify-content:center;gap:6px;padding:8px;padding-top:calc(8px + env(safe-area-inset-top))}
+nav a{color:#fff;text-decoration:none;padding:9px 12px;font-size:14px;font-weight:600;border-radius:22px;display:flex;align-items:center;gap:6px;white-space:nowrap;font-family:Georgia,"Times New Roman",serif;transition:background .2s,color .2s}
+nav a span{display:none}
+nav a.on{background:#fff;color:var(--g);box-shadow:0 1px 4px #0003}
+nav a:active{background:#ffffff40}
+@media(min-width:480px){nav a{padding:9px 16px;font-size:16px}nav a span{display:inline}}
+header{background:linear-gradient(160deg,#c8622c,#f0a93a);color:#fff;text-align:center;padding:48px 20px;border-bottom:4px solid #e0a860}
 header h1{margin:0 0 6px;font-size:clamp(26px,8vw,42px)}
 header p{margin:0;opacity:.9}
 header .top{font-size:14px;letter-spacing:.04em;margin-bottom:10px;opacity:.95}
 section{padding:28px 16px;max-width:900px;margin:auto}
 h1,h2,h3{font-family:Georgia,"Times New Roman",serif}
-h2{color:var(--g);margin:0 0 10px;font-size:clamp(22px,6vw,30px)}
+h2{color:var(--g);text-align:center;margin:0 0 10px;font-size:clamp(22px,6vw,30px)}
 h3{color:var(--g);margin:18px 0 6px}
 .card{background:#fffdf6;border:1px solid #f3dcb0;border-radius:14px;padding:16px;box-shadow:0 1px 6px #0001}
 .card a{color:var(--g);font-weight:600;word-break:break-all}
-.bar{max-width:900px;margin:0 auto 10px;padding:0 16px}
+.bar{max-width:900px;margin:0 auto 10px;padding:0 16px;display:flex;flex-wrap:wrap;gap:8px}
 .bar button{background:var(--g);color:#fff;border:0;border-radius:22px;padding:11px 18px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer}
 .bar button:active{background:#954421}
-.hint{font-size:14px;color:#6b7280;margin:0 0 10px}
+.bar #bc{background:#fff;color:var(--g);border:2px solid var(--g)}
+.bar #bc:active{background:var(--g2)}
+h2::after{content:"";display:block;width:64px;height:3px;background:#e0a860;margin:8px auto 0;border-radius:2px}
+.hint{text-align:center;font-size:14px;color:#6b7280;margin:0 0 10px}
 
 /* Stablo */
 #stablo{max-width:none;padding:28px 0}
@@ -80,15 +86,24 @@ h3{color:var(--g);margin:18px 0 6px}
 
 /* Галерија */
 .gal{display:grid;grid-template-columns:1fr;gap:16px}
-.gal figure{margin:0;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 6px #0001}
+.gal figure{margin:0;border:1px solid #f3dcb0;background:#fffdf6;border-radius:14px;overflow:hidden;box-shadow:0 1px 6px #0001}
 .gal img{width:100%;height:auto;display:block}
-.gal figcaption{padding:10px 14px;font-size:14px;color:#4b5563}
+.gal figcaption{padding:10px 14px;font-size:14px;color:#6b4a35;font-style:italic;text-align:center;font-family:Georgia,serif}
 @media(min-width:600px){.gal{grid-template-columns:1fr 1fr}}
+.sub{text-align:center;margin:28px 0 12px;font-family:Georgia,"Times New Roman",serif}
+.gal.one{max-width:640px;margin:0 auto}
+.gal.m{display:block;column-count:1;column-gap:16px}
+.gal.m figure{break-inside:avoid;margin:0 0 16px}
+@media(min-width:600px){.gal.m{column-count:2}}
+.gal img{cursor:zoom-in}
+#lb{position:fixed;inset:0;z-index:60;background:#000d;display:flex;align-items:center;justify-content:center;padding:12px;cursor:zoom-out}
+#lb[hidden]{display:none}
+#lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px}
 footer{text-align:center;padding:24px 16px calc(24px + env(safe-area-inset-bottom));background:var(--g);color:#ffe9c7;font-size:14px}
 </style>
 </head>
 <body>
-<nav><a href="#pocetna">Почетна</a><a href="#stablo">Породично стабло</a><a href="#galerija">Галерија</a></nav>
+<nav><a href="#pocetna" class="on"><span>🏠</span>Почетна</a><a href="#stablo"><span>🌳</span>Породично стабло</a><a href="#galerija"><span>🖼️</span>Галерија</a></nav>
 
 <header id="pocetna">
   <p class="top">Република Србија • Аутономна Покрајина Косово и Метохија</p>
@@ -102,14 +117,14 @@ footer{text-align:center;padding:24px 16px calc(24px + env(safe-area-inset-botto
     <p>Породица Несторовић населила је крајем 19. века село Придворица у општини Лепосавић, на северу Косова и Метохије. Кроз генерације смо чували традицију, крсну славу и породичне вредности наших предака.</p>
     <h3>Сврха сајта</h3>
     <p>Овај сајт је направљен као дигитални архив са циљем да сачува успомене, повеже све чланове наше породице и млађим генерацијама остави јасан траг о коренима и пореклу.</p>
-    <p>Отворени смо за сва питања и сугестије, пишите нам на имејл адресу <a href="mailto:nikolanestorovic@hotmail.com">nikolanestorovic@hotmail.com</a></p>
+    <p>Отворени смо за сва питања и сугестије. Пишите аутору овог сајта на имејл адресу <a href="mailto:nikolanestorovic@hotmail.com">nikolanestorovic@hotmail.com</a></p>
   </div>
 </section>
 
 <section id="stablo">
   <h2>Породично стабло</h2>
-  <p class="hint">Превлачите прстом за померање, штипните са два прста за зум. Дугмад: + / − / ⤢ (цео приказ) / ⛶ (цео екран) / ⇄ (промена распореда) / ⊞ (отвори или затвори све). Додирните име са знаком + да отворите следећи ниво.</p>
-  <div class="bar"><button id="bx">Прошири цело стабло</button></div>
+  <p class="hint">Додирните име да видите потомке. Дугмад + и − увећавају и умањују стабло, а ⤢ приказује цело стабло.</p>
+  <div class="bar"><button id="bx">Прошири цело стабло</button><button id="bc">Скупи стабло</button></div>
   <div id="wrap">
     <div id="vp"><div id="cv" class="v"></div></div>
     <div class="ctl">
@@ -125,13 +140,19 @@ footer{text-align:center;padding:24px 16px calc(24px + env(safe-area-inset-botto
 
 <section id="galerija">
   <h2>Галерија слика</h2>
-  <p class="hint">Старе породичне фотографије, родна кућа и призори из Придворице.</p>
-  <div class="gal">
-    <figure><img loading="lazy" src="https://placehold.co/600x400/ffe9c7/b5582b?text=Стара+породична+кућа" alt="Стара кућа у Придворици"><figcaption>Породично имање у Придворици</figcaption></figure>
-    <figure><img loading="lazy" src="https://placehold.co/600x400/fff1b8/9a5b00?text=Породично+окупљање" alt="Породично окупљање"><figcaption>Окупљање поводом крсне славе</figcaption></figure>
-    <figure><img loading="lazy" src="https://placehold.co/600x400/ffd9b0/b5582b?text=Панорама+села" alt="Село Придворица"><figcaption>Поглед на село Придворица, општина Лепосавић</figcaption></figure>
-    <figure><img loading="lazy" src="https://placehold.co/600x400/fbc9a0/8a3a14?text=Архивска+фотографија" alt="Архивска фотографија"><figcaption>Архивска фотографија предака</figcaption></figure>
+  <p class="hint">Породичне фотографије и призори из села и околине.</p>
+    <h3 class="sub">Породично окупљање - Бадњи дан</h3>
+  <div class="gal m">
+    <figure><img loading="lazy" src="slike/badnjak-2024.jpg" alt="Породично окупљање - Бадњи дан 2024."><figcaption>Бадњи дан 2024.</figcaption></figure>
+    <figure><img loading="lazy" src="slike/badnjak-2023.jpg" alt="Породично окупљање - Бадњи дан 2023."><figcaption>Бадњи дан 2023.</figcaption></figure>
+    <figure><img loading="lazy" src="slike/badnjak-arhiva.jpg" alt="Породично окупљање - Бадњи дан"><figcaption>Бадњи дан</figcaption></figure>
+    <figure><img loading="lazy" src="slike/badnjak-1995.jpg" alt="Бадњи дан 1995/96."><figcaption>Бадњи дан 1995/96.</figcaption></figure>
   </div>
+  <h3 class="sub">Панорама села и околине</h3>
+  <div class="gal one">
+    <figure><img loading="lazy" src="slike/panorama-socanica.jpg" alt="Панорама Сочаница 2008."><figcaption>Панорама Сочаница 2008.</figcaption></figure>
+  </div>
+  <div id="lb" hidden><img alt=""></div>
 </section>
 
 <footer>© 2026 Породица Несторовић • Село Придворица, Општина Лепосавић</footer>
@@ -198,15 +219,24 @@ document.getElementById('bp').onclick=()=>zoomAt(1.3,...center());
 document.getElementById('bm').onclick=()=>zoomAt(1/1.3,...center());
 document.getElementById('bz').onclick=fit;
 let allOpen=false;
-function toggleAll(){allOpen=!allOpen;
-  cv.querySelectorAll('li').forEach(li=>{if(li.querySelector(':scope>ul')){li.classList.toggle('c',!allOpen&&+li.dataset.d>=1);badge(li);}});
-  document.getElementById('bt').textContent=allOpen?'⊟':'⊞';
-  document.getElementById('bx').textContent=allOpen?'Скупи стабло':'Прошири цело стабло';
-  allOpen?fit():start();}
-document.getElementById('bt').onclick=document.getElementById('bx').onclick=toggleAll;
+function setAll(open){allOpen=open;
+  cv.querySelectorAll('li').forEach(li=>{if(li.querySelector(':scope>ul')){li.classList.toggle('c',!open&&+li.dataset.d>=1);badge(li);}});
+  document.getElementById('bt').textContent=open?'⊟':'⊞';
+  open?fit():start();}
+document.getElementById('bt').onclick=()=>setAll(!allOpen);
+document.getElementById('bx').onclick=()=>setAll(true);
+document.getElementById('bc').onclick=()=>setAll(false);
 document.getElementById('bo').onclick=()=>{cv.classList.toggle('v');cv.classList.toggle('h');start();};
 document.getElementById('bf').onclick=()=>{wrap.classList.toggle('full');document.body.style.overflow=wrap.classList.contains('full')?'hidden':'';setTimeout(fit,50);};
 window.addEventListener('load',start);
+const lb=document.getElementById('lb');
+document.querySelectorAll('.gal img').forEach(i=>i.onclick=()=>{lb.firstChild.src=i.src;lb.hidden=false;});
+lb.onclick=()=>lb.hidden=true;
+const links=[...document.querySelectorAll('nav a')],secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+function mark(){let i=0;secs.forEach((e,k)=>{if(e.getBoundingClientRect().top<=110)i=k;});
+  if(innerHeight+scrollY>=document.body.scrollHeight-4)i=secs.length-1;
+  links.forEach((a,k)=>a.classList.toggle('on',k===i));}
+addEventListener('scroll',mark,{passive:true});mark();
 </script>
 </body>
 </html>
