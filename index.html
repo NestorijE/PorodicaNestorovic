@@ -125,7 +125,7 @@ footer{text-align:center;padding:24px 16px calc(24px + env(safe-area-inset-botto
 
 <section id="stablo">
   <h2>Породично стабло</h2>
-  <p class="hint">Додирните име да видите потомке. Дугмад + и − увећавају и умањују стабло, а ⤢ приказује цело стабло. За слободно померање додирните ⛶. Дугме ⇄ мења хоризонтални и вертикални приказ стабла.</p>
+  <p class="hint">Додирните име да видите потомке. Дугмад + и − увећавају и умањују стабло, ⤢ приказује цело стабло, а ⌂ враћа на почетак (корен). За слободно померање додирните ⛶. Дугме ⇄ мења хоризонтални и вертикални приказ стабла.</p>
   <div class="bar"><button id="bx">Прошири цело стабло</button><button id="bc">Скупи стабло</button></div>
   <div id="wrap">
     <div id="vp"><div id="cv" class="v"></div></div>
@@ -133,6 +133,7 @@ footer{text-align:center;padding:24px 16px calc(24px + env(safe-area-inset-botto
       <button id="bt" aria-label="Отвори или затвори све">⊞</button>
       <button id="bo" aria-label="Промени распоред">⇄</button>
       <button id="bf" aria-label="Цео екран">⛶</button>
+      <button id="bh" aria-label="Врати на почетак стабла">⌂</button>
       <button id="bz" aria-label="Приказ целог стабла">⤢</button>
       <button id="bp" aria-label="Увећај">+</button>
       <button id="bm" aria-label="Умањи">−</button>
@@ -191,7 +192,10 @@ const cv=document.getElementById('cv'),vp=document.getElementById('vp'),wrap=doc
 const rootUl=document.createElement('ul');rootUl.appendChild(build(T,0));cv.appendChild(rootUl);
 
 let s=.8,x=0,y=0;const MIN=.2,MAX=3;
-const apply=()=>cv.style.transform=`translate(${x}px,${y}px) scale(${s})`;
+function clamp(){const r=vp.getBoundingClientRect(),cw=cv.offsetWidth*s,ch=cv.offsetHeight*s,m=24,v=cv.classList.contains('v');
+  if(cw<=r.width)x=v?(r.width-cw)/2:8;else x=Math.min(m,Math.max(r.width-cw-m,x));
+  if(ch<=r.height)y=v?8:(r.height-ch)/2;else y=Math.min(m,Math.max(r.height-ch-m,y));}
+const apply=()=>{clamp();cv.style.transform=`translate(${x}px,${y}px) scale(${s})`;};
 function zoomAt(f,cx,cy){const ns=Math.min(MAX,Math.max(MIN,s*f));f=ns/s;x=cx-(cx-x)*f;y=cy-(cy-y)*f;s=ns;apply();}
 function center(){const r=vp.getBoundingClientRect();return[r.width/2,r.height/2];}
 function fit(){const w=cv.offsetWidth,h=cv.offsetHeight,r=vp.getBoundingClientRect();
@@ -220,6 +224,7 @@ vp.addEventListener('wheel',e=>{if(!e.ctrlKey&&!e.metaKey&&!wrap.classList.conta
 document.getElementById('bp').onclick=()=>zoomAt(1.3,...center());
 document.getElementById('bm').onclick=()=>zoomAt(1/1.3,...center());
 document.getElementById('bz').onclick=fit;
+document.getElementById('bh').onclick=start;
 let allOpen=false;
 function setAll(open){allOpen=open;
   cv.querySelectorAll('li').forEach(li=>{if(li.querySelector(':scope>ul')){li.classList.toggle('c',!open&&+li.dataset.d>=1);badge(li);}});
