@@ -144,8 +144,8 @@ footer{text-align:center;padding:24px 16px calc(24px + env(safe-area-inset-botto
 
 <section id="stablo">
   <h2>Породично стабло</h2>
-  <p class="hint">Додирните име да видите потомке. Остала упутства су у делу „Инфо“.</p>
-  <div class="bar"><button id="bx">Прошири цело стабло</button><button id="bc">Скупи стабло</button><button id="bi">ⓘ Инфо</button></div>
+  <p class="hint">Додирните име да видите потомке. Дугмад + и − увећавају и умањују стабло, ⤢ приказује цело стабло, а ⌂ враћа на почетак (корен). За слободно померање додирните ⛶. Дугме ⇄ мења хоризонтални и вертикални приказ стабла. Испод имена пише колено (Нестор Шиљић је 1. колено).</p>
+  <div class="bar"><button id="bx">Прошири цело стабло</button><button id="bc">Скупи стабло</button></div>
   <div id="wrap">
     <div id="vp"><div id="cv" class="v"></div></div>
     <div class="ctl">
@@ -221,19 +221,6 @@ function showInfo(li){
   else{const m=document.createElement('p');m.className='dm';m.textContent='Додатни подаци о овом члану породице ће бити додати.';dbd.appendChild(m);}
   dt.hidden=false;
 }
-function showHelp(){
-  dn.textContent='Како се користи стабло';dbd.textContent='';
-  [['Додир на име','Отвара или затвара потомке. Знак поред имена (на пример +3) показује колико их има.'],
-   ['Колено','Испод имена пише колено; Нестор Шиљић је 1. колено.'],
-   ['+ и −','Увећава и умањује стабло.'],
-   ['⤢','Приказује цело стабло.'],
-   ['⌂','Враћа на почетак (корен).'],
-   ['⛶','Стабло преко целог екрана, за слободно померање у свим правцима.'],
-   ['⇄','Мења хоризонтални и вертикални приказ стабла.'],
-   ['⊞ / ⊟','Отвара или затвара све гране одједном.']].forEach(r=>row(r[0],r[1]));
-  dt.hidden=false;
-}
-document.getElementById('bi').onclick=showHelp;
 function toggle(li){
   if(!li.querySelector(':scope>ul'))return;
   const n=li.firstChild,r0=n.getBoundingClientRect();
